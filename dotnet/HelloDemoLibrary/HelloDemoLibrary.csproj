@@ -4,12 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Tjololo.Prep.Nuget</PackageId>
+    <PackageId>Tjololo.Demo.Nuget</PackageId>
     <!-- Verison section -->
-    <Version>0.0.2</Version>
-    <FileVersion>0.0.2.0</FileVersion>
-    <AssemblyVersion>0.0.2.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases/nuget-0.0.2</PackageReleaseNotes>
+    <Version>0.0.1</Version>
+    <FileVersion>0.0.1.0</FileVersion>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases</PackageReleaseNotes>
     <!-- Verison section end -->
     <Authors>tjololo</Authors>
     <OutputType>Library</OutputType>
