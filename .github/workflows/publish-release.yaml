@@ -1,9 +1,9 @@
 name: Publish release
 
 on:
-  push:
-    branches:
-    - automated-releases
+  release:
+    types:
+      - published
 
 jobs:
   publish:
