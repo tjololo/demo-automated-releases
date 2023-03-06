@@ -9,6 +9,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     name: Dotnet nuget push
+    if: startsWith(github.ref, 'refs/tags/v')
     steps:
     - name: Install dotnet sdk
       uses: actions/setup-dotnet@v3
