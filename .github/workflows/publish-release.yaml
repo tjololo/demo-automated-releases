@@ -27,9 +27,9 @@ jobs:
     - name: Install deps
       run: |
         dotnet restore dotnet/dotnet.sln
-    - name: Test
+    - name: Pack
       run: |
-        dotnet pack dotnet/dotnet.sln --no-restore -p:Deterministic=true -p:BuildNumber=${{ github.run_number }} -v m
-    - name: Build
+        dotnet pack dotnet/dotnet.sln --no-restore -p:Deterministic=true -p:BuildNumber=${{ github.run_number }} --configuration Release -v m
+    - name: Push
       run: |
         dotnet nuget push dotnet/**/bin/Release/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
