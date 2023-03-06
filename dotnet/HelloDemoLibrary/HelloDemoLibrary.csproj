@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Tjololo.Prep.Nuget</PackageId>
+    <!-- Verison section -->
+    <Version>0.0.2</Version>
+    <FileVersion>0.0.2.0</FileVersion>
+    <AssemblyVersion>0.0.2.0</AssemblyVersion>
+    <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases/nuget-0.0.2</PackageReleaseNotes>
+    <!-- Verison section end -->
+    <Authors>tjololo</Authors>
+    <OutputType>Library</OutputType>
+    <RepoRoot>$([System.IO.Directory]::GetParent($(MSBuildThisFileDirectory)).Parent.Parent.FullName)</RepoRoot>
+    <RepositoryUrl>https://github.com/tjololo/demo-automated-releases</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Demo library (nuget) for testing automated releases</Description>
+    <IsPackable>true</IsPackable>
+    <PackageTags>Demo;tjololo;no-value</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <!-- Add SourceLink on nuget.org -->
+
+  <PropertyGroup Label="SourceLink">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Deterministic)'=='true'">
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Deterministic)'=='true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+      <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" Condition="'$(IntegrationBuild)' != 'true'">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <TargetFrameworkMonikerAssemblyAttributesPath>$([System.IO.Path]::Combine('$(IntermediateOutputPath)','$(TargetFrameworkMoniker).AssemblyAttributes$(DefaultLanguageSourceExtension)'))</TargetFrameworkMonikerAssemblyAttributesPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <EmbeddedFiles Include="$(GeneratedAssemblyInfoFile)" />
+    </ItemGroup>
+
+    <!-- Add SourceLink on nuget.org end -->
+    
+</Project>
