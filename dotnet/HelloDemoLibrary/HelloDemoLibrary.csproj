@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Tjololo.Prep.Nuget</PackageId>
+    <PackageId>Tjololo.Demo.Nuget</PackageId>
     <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
     <MinVerTagPrefix>v</MinVerTagPrefix>
     <!-- Verison section -->
@@ -36,7 +36,7 @@
       <FileVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</FileVersion>
       <Version>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</Version>
       <AssemblyVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</AssemblyVersion>
-      <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases/v$(MinVerVersion)</PackageReleaseNotes>
+      <PackageReleaseNotes>https://github.com/tjololo/demo-automated-releases/releases/v$(MinVerVersion)</PackageReleaseNotes>
     </PropertyGroup>
   </Target>
   <!-- MinVer section end -->
