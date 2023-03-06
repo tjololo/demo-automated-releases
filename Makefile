@@ -14,3 +14,11 @@ dotnet-clean:
 .PHONY: dotnet-push
 dotnet-push: dotnet-pack
 	@dotnet nuget push dotnet/HelloDemoLibrary/bin/Release/*.nupkg  --source https://api.nuget.org/v3/index.json --api-key $(shell cat .secrets/nuget-key.secret)
+
+.PHONY: dotnet-restore
+dotnet-restore:
+	dotnet restore dotnet/dotnet.sln
+
+.PHONY: dotnet-test
+dotnet-test: dotnet-restore
+	dotnet test dotnet/dotnet.sln --no-restore -v m
