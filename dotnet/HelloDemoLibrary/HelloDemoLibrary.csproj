@@ -4,12 +4,10 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>Tjololo.Demo.Nuget</PackageId>
+    <PackageId>Tjololo.Prep.Nuget</PackageId>
+    <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
     <!-- Verison section -->
-    <Version>0.0.1</Version>
-    <FileVersion>0.0.1.0</FileVersion>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases</PackageReleaseNotes>
     <!-- Verison section end -->
     <Authors>tjololo</Authors>
     <OutputType>Library</OutputType>
@@ -26,6 +24,22 @@
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
+
+  <!-- MinVer section -->
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <Target Name="AssemblyVersionTarget" AfterTargets="MinVer" Condition="'$(MinVerVersion)'!='' AND '$(BuildNumber)' != ''">
+    <PropertyGroup>
+      <FileVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</FileVersion>
+      <Version>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</Version>
+      <AssemblyVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch).$(BuildNumber)</AssemblyVersion>
+      <PackageReleaseNotes>https://github.com/tjololo/hello-nuget/releases/v$(MinVerVersion)</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
+  <!-- MinVer section end -->
 
   <!-- Add SourceLink on nuget.org -->
 
