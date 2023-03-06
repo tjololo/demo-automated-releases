@@ -1,0 +1,41 @@
+name: Test and build dotnet
+
+on:
+  push:
+    branches:
+    - main
+  pull_requests:
+    branches:
+    - main
+    - add-automated-builds
+    types:
+    - opened
+    - synchronize
+    - reopened
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os:
+        - macos-latest
+        - windows-latest
+        - ubuntu-latest
+    runs-on: {{ matrix.os }}
+    steps:
+    - name: Install dotnet sdk
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
+    - name: Install deps
+      run: |
+        dotnet restore
+    - name: Test
+      run: |
+        dotnet test dotnet/dotnet.sln --no-restore -p:Deterministic=true -p:BuildNumber=${{ github.run_number }} -v m
+    - name: Build
+      run: |
+        dotnet build dotnet/dotnet.sln --no-restore -p:Deterministic=true -p:BuildNumber=${{ github.run_number }} --configuration Release -v m
