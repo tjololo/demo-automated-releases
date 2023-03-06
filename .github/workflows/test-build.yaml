@@ -32,7 +32,7 @@ jobs:
           fetch-depth: 0
     - name: Install deps
       run: |
-        dotnet restore
+        dotnet restore dotnet/dotnet.sln
     - name: Test
       run: |
         dotnet test dotnet/dotnet.sln --no-restore -p:Deterministic=true -p:BuildNumber=${{ github.run_number }} -v m
