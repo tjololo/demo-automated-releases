@@ -14,6 +14,6 @@ public class GreetingHelper
     /// <returns>Greeting for name</returns>
     public string GetGreetingForName(string name)
     {
-        return $"{GREETING_PREFIX} {name}";
+        return $"{GREETING_PREFIX} {name}.";
     }
 }
